@@ -53,7 +53,7 @@
 2. Backend foundation, database and migrations — COMPLETED
 3. Authentication, authorization and users — COMPLETED
 4. Categories, products and units — COMPLETED
-5. Warehouses and suppliers
+5. Warehouses and suppliers — COMPLETED
 6. Inventory, import and export
 7. Transfer, adjustment and alerts
 8. Backend integration tests
@@ -63,7 +63,7 @@
 12. End-to-end testing, deployment and documentation
 
 ## Current Task
-Batch 4 verified. Awaiting approval for warehouses and suppliers.
+Batch 5 verified. Awaiting approval for inventory, import and export.
 
 ## Batch 3 Design Decisions
 - User identifiers use UUIDs.
@@ -79,3 +79,9 @@ Batch 4 verified. Awaiting approval for warehouses and suppliers.
 - Products use UUID foreign keys to Category and Unit with `RESTRICT` deletion behavior.
 - A product may be deleted only while no future business record references it; later inventory migrations must preserve this restriction.
 - All catalog lists use offset pagination (`skip`, `limit`); products additionally support search, category, and active-status filters.
+
+## Batch 5 Design Decisions
+- Warehouse and supplier codes are normalized to uppercase; names are whitespace-normalized while preserving display capitalization.
+- Supplier email is optional and validated but intentionally not unique; supplier code is the business identifier.
+- Phone validation accepts a simple international-format representation. Warehouse and supplier deletion is physical only until an inventory transaction references either record; future transaction foreign keys must use `RESTRICT` so referenced records cannot be deleted.
+- Warehouse and supplier lists use the existing offset pagination with search and active-status filters.
