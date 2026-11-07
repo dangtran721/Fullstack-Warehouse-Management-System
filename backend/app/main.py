@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException, status
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
+from app.api.v1.router import api_router
 from app.core.config import get_settings
 from app.db.session import engine
 
@@ -9,6 +10,7 @@ from app.db.session import engine
 settings = get_settings()
 
 app = FastAPI(title=settings.app_name, debug=settings.debug)
+app.include_router(api_router, prefix=settings.api_v1_prefix)
 
 
 @app.get("/health", tags=["health"])

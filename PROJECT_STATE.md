@@ -51,7 +51,7 @@
 ## Implementation Batches
 1. Environment and workspace — COMPLETED
 2. Backend foundation, database and migrations — COMPLETED
-3. Authentication, authorization and users
+3. Authentication, authorization and users — COMPLETED
 4. Categories, products and units
 5. Warehouses and suppliers
 6. Inventory, import and export
@@ -63,4 +63,13 @@
 12. End-to-end testing, deployment and documentation
 
 ## Current Task
-Batch 2 verified. Awaiting approval for authentication, authorization and users.
+Batch 3 verified. Awaiting approval for categories, products and units.
+
+## Batch 3 Design Decisions
+- User identifiers use UUIDs.
+- Usernames and emails are normalized to lowercase before persistence.
+- Public registration always creates a STAFF account; ADMIN creation is not exposed publicly.
+- Passwords require 8–128 characters with at least one letter and one digit, and are hashed with Argon2id.
+- Access and refresh JWTs use distinct token types. Refresh tokens are stored only as SHA-256 hashes.
+- Refresh token rotation uses a token family. Reuse of a rotated token revokes every still-active token in its family.
+- Authentication tests use an isolated in-memory SQLite database and do not change development PostgreSQL data.
