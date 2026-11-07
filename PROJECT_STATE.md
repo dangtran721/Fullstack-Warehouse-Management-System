@@ -54,7 +54,7 @@
 3. Authentication, authorization and users — COMPLETED
 4. Categories, products and units — COMPLETED
 5. Warehouses and suppliers — COMPLETED
-6. Inventory, import and export
+6. Inventory, import and export — COMPLETED
 7. Transfer, adjustment and alerts
 8. Backend integration tests
 9. Frontend foundation and authentication
@@ -63,7 +63,7 @@
 12. End-to-end testing, deployment and documentation
 
 ## Current Task
-Batch 5 verified. Awaiting approval for inventory, import and export.
+Batch 6 verified. Awaiting approval for transfer, adjustment and alerts.
 
 ## Batch 3 Design Decisions
 - User identifiers use UUIDs.
@@ -85,3 +85,9 @@ Batch 5 verified. Awaiting approval for inventory, import and export.
 - Supplier email is optional and validated but intentionally not unique; supplier code is the business identifier.
 - Phone validation accepts a simple international-format representation. Warehouse and supplier deletion is physical only until an inventory transaction references either record; future transaction foreign keys must use `RESTRICT` so referenced records cannot be deleted.
 - Warehouse and supplier lists use the existing offset pagination with search and active-status filters.
+
+## Batch 6 Design Decisions
+- Inventory quantities use `Numeric(18,3)` and are unique per warehouse/product pair. Quantities may be negative only after an ADMIN confirms an export.
+- Import and export orders support multiple products and use `DRAFT → CONFIRMED` or `DRAFT → CANCELLED`. No monetary fields are stored.
+- Confirmation locks the order and affected inventory rows in one transaction, records immutable inventory movements, and rejects non-draft confirmation to prevent duplicate updates.
+- STAFF may create and confirm inventory documents but cannot confirm an export that exceeds available inventory; ADMIN may do so.
