@@ -2,5 +2,6 @@
 
 from app.models.refresh_token import RefreshToken
 from app.models.user import User, UserRole
+from app.models.catalog import Category, Product, Unit
 
-__all__ = ["RefreshToken", "User", "UserRole"]
+__all__ = ["Category", "Product", "RefreshToken", "Unit", "User", "UserRole"]

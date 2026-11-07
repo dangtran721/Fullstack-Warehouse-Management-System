@@ -52,7 +52,7 @@
 1. Environment and workspace — COMPLETED
 2. Backend foundation, database and migrations — COMPLETED
 3. Authentication, authorization and users — COMPLETED
-4. Categories, products and units
+4. Categories, products and units — COMPLETED
 5. Warehouses and suppliers
 6. Inventory, import and export
 7. Transfer, adjustment and alerts
@@ -63,7 +63,7 @@
 12. End-to-end testing, deployment and documentation
 
 ## Current Task
-Batch 3 verified. Awaiting approval for categories, products and units.
+Batch 4 verified. Awaiting approval for warehouses and suppliers.
 
 ## Batch 3 Design Decisions
 - User identifiers use UUIDs.
@@ -73,3 +73,9 @@ Batch 3 verified. Awaiting approval for categories, products and units.
 - Access and refresh JWTs use distinct token types. Refresh tokens are stored only as SHA-256 hashes.
 - Refresh token rotation uses a token family. Reuse of a rotated token revokes every still-active token in its family.
 - Authentication tests use an isolated in-memory SQLite database and do not change development PostgreSQL data.
+
+## Batch 4 Design Decisions
+- Categories and units normalize names by trimming whitespace and storing lowercase values; unit codes and product SKUs are stored uppercase.
+- Products use UUID foreign keys to Category and Unit with `RESTRICT` deletion behavior.
+- A product may be deleted only while no future business record references it; later inventory migrations must preserve this restriction.
+- All catalog lists use offset pagination (`skip`, `limit`); products additionally support search, category, and active-status filters.
