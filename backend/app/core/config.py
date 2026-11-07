@@ -20,6 +20,7 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_access_token_expire_minutes: int = Field(default=15, gt=0)
     jwt_refresh_token_expire_days: int = Field(default=7, gt=0)
+    cors_allowed_origins: str = "http://localhost:5500,http://127.0.0.1:5500"
 
     model_config = SettingsConfigDict(
         env_file=PROJECT_ROOT / ".env",

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create account | WMS</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="register" class="auth-page">
+    <main class="auth-shell">
+      <section class="brand-panel" aria-label="Application introduction">
+        <p class="eyebrow">Warehouse Management System</p>
+        <h1>Get your workspace ready.</h1>
+        <p>New accounts are registered as staff members.</p>
+      </section>
+      <section class="auth-card" aria-labelledby="register-title">
+        <p class="eyebrow">Create account</p>
+        <h2 id="register-title">Start with WMS</h2>
+        <div id="form-message" class="message" role="alert" aria-live="polite" hidden></div>
+        <form id="register-form" novalidate>
+          <label for="full-name">Full name <span class="optional">(optional)</span></label>
+          <input id="full-name" name="fullName" type="text" autocomplete="name" maxlength="255" />
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" required minlength="3" maxlength="50" pattern="[A-Za-z0-9_.-]+" />
+          <p class="field-help">3–50 characters: letters, numbers, dots, hyphens, or underscores.</p>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required maxlength="255" />
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="128" />
+          <p class="field-help">Use 8–128 characters with at least one letter and one number.</p>
+          <label for="confirm-password">Confirm password</label>
+          <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" required minlength="8" maxlength="128" />
+          <button id="submit-button" type="submit">Create account</button>
+        </form>
+        <p class="switch-link">Already have an account? <a href="login.html">Sign in</a></p>
+      </section>
+    </main>
+    <script type="module" src="../assets/js/app.js"></script>
+  </body>
+</html>

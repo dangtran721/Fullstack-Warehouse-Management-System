@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in | WMS</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="login" class="auth-page">
+    <main class="auth-shell">
+      <section class="brand-panel" aria-label="Application introduction">
+        <p class="eyebrow">Warehouse Management System</p>
+        <h1>Control inventory with confidence.</h1>
+        <p>Sign in to access your warehouse workspace.</p>
+      </section>
+      <section class="auth-card" aria-labelledby="login-title">
+        <p class="eyebrow">Welcome back</p>
+        <h2 id="login-title">Sign in</h2>
+        <p class="muted">Use your username or email and password.</p>
+        <div id="form-message" class="message" role="alert" aria-live="polite" hidden></div>
+        <form id="login-form" novalidate>
+          <label for="identifier">Username or email</label>
+          <input id="identifier" name="identifier" type="text" autocomplete="username" required maxlength="255" autofocus />
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="128" />
+          <button id="submit-button" type="submit">Sign in</button>
+        </form>
+        <p class="switch-link">New here? <a href="register.html">Create an account</a></p>
+      </section>
+    </main>
+    <script type="module" src="../assets/js/app.js"></script>
+  </body>
+</html>

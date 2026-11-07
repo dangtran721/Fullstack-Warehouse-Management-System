@@ -57,19 +57,25 @@
 6. Inventory, import and export — COMPLETED
 7. Transfer, adjustment and alerts — COMPLETED
 8. Backend integration tests — PARTIALLY VERIFIED
-9. Frontend foundation and authentication
+9. Frontend foundation and authentication — COMPLETED
 10. Frontend management screens
 11. Frontend integration and fixes
 12. End-to-end testing, deployment and documentation
 
 ## Current Task
-Batch 8 is partially verified. PostgreSQL concurrency verification is blocked by the psycopg/libpq runtime.
+Batch 9 frontend foundation and authentication is complete and verified. Await approval before starting Batch 10.
 
 ## Batch 8 Verification
 - Full regression: 15 tests passed.
 - Backend coverage: 94%.
 - API integration workflows use isolated SQLite in-memory databases and do not change development data.
 - PostgreSQL concurrency: NOT VERIFIED. The psycopg/libpq runtime stalls during PostgreSQL driver startup; no business-logic change was made to work around it.
+
+## Batch 9 Verification
+- Frontend authentication client tests: 6 passed (register, login, refresh rotation, logout, current-user request, and validation errors).
+- Backend regression plus CORS preflight test: 16 passed, 1 skipped.
+- Backend coverage: 94%.
+- The frontend is static HTML/CSS/Vanilla JavaScript. It stores the JWT pair in local storage because the approved backend contract returns tokens in JSON rather than secure cookies.
 
 ## Batch 7 Design Decisions
 - Transfers use the same DRAFT/CONFIRMED/CANCELLED workflow and always reject source-stock shortages, including for ADMIN.

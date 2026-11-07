@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | WMS</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="dashboard" class="app-page">
+    <header class="app-header">
+      <a class="logo" href="dashboard.html">WMS</a>
+      <div class="account-menu">
+        <span id="user-name" class="user-name">Loading account…</span>
+        <button id="logout-button" type="button" class="button-secondary">Sign out</button>
+      </div>
+    </header>
+    <main class="dashboard-shell">
+      <section class="page-heading">
+        <p class="eyebrow">Authenticated workspace</p>
+        <h1>Welcome, <span id="welcome-name">user</span></h1>
+        <p id="user-details" class="muted">Loading your account…</p>
+      </section>
+      <section class="empty-state" aria-label="Upcoming features">
+        <h2>Your warehouse workspace is ready</h2>
+        <p>Warehouse management screens will be added in the next approved batch.</p>
+      </section>
+    </main>
+    <script type="module" src="../assets/js/app.js"></script>
+  </body>
+</html>
