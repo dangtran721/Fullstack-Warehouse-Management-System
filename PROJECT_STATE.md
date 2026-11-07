@@ -55,7 +55,7 @@
 4. Categories, products and units — COMPLETED
 5. Warehouses and suppliers — COMPLETED
 6. Inventory, import and export — COMPLETED
-7. Transfer, adjustment and alerts
+7. Transfer, adjustment and alerts — COMPLETED
 8. Backend integration tests
 9. Frontend foundation and authentication
 10. Frontend management screens
@@ -63,7 +63,12 @@
 12. End-to-end testing, deployment and documentation
 
 ## Current Task
-Batch 6 verified. Awaiting approval for transfer, adjustment and alerts.
+Batch 7 verified. Awaiting approval for backend integration tests.
+
+## Batch 7 Design Decisions
+- Transfers use the same DRAFT/CONFIRMED/CANCELLED workflow and always reject source-stock shortages, including for ADMIN.
+- `min_quantity` is nullable per inventory row. Null means no threshold is configured; a row is low stock when its quantity is less than or equal to its configured threshold.
+- Adjustments are ADMIN-only, require a reason, are immutable after creation, and cannot make inventory negative.
 
 ## Batch 3 Design Decisions
 - User identifiers use UUIDs.
