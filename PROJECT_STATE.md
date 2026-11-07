@@ -56,14 +56,20 @@
 5. Warehouses and suppliers — COMPLETED
 6. Inventory, import and export — COMPLETED
 7. Transfer, adjustment and alerts — COMPLETED
-8. Backend integration tests
+8. Backend integration tests — PARTIALLY VERIFIED
 9. Frontend foundation and authentication
 10. Frontend management screens
 11. Frontend integration and fixes
 12. End-to-end testing, deployment and documentation
 
 ## Current Task
-Batch 7 verified. Awaiting approval for backend integration tests.
+Batch 8 is partially verified. PostgreSQL concurrency verification is blocked by the psycopg/libpq runtime.
+
+## Batch 8 Verification
+- Full regression: 15 tests passed.
+- Backend coverage: 94%.
+- API integration workflows use isolated SQLite in-memory databases and do not change development data.
+- PostgreSQL concurrency: NOT VERIFIED. The psycopg/libpq runtime stalls during PostgreSQL driver startup; no business-logic change was made to work around it.
 
 ## Batch 7 Design Decisions
 - Transfers use the same DRAFT/CONFIRMED/CANCELLED workflow and always reject source-stock shortages, including for ADMIN.

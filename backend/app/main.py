@@ -4,7 +4,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from app.api.v1.router import api_router
 from app.core.config import get_settings
-from app.db.session import engine
+from app.db.session import get_engine
 
 
 settings = get_settings()
@@ -23,7 +23,7 @@ def application_health() -> dict[str, str]:
 def database_health() -> dict[str, str]:
     """Verify that the API can reach PostgreSQL."""
     try:
-        with engine.connect() as connection:
+        with get_engine().connect() as connection:
             connection.execute(text("SELECT 1"))
     except SQLAlchemyError as error:
         raise HTTPException(
