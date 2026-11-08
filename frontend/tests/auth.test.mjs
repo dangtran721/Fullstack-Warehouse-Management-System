@@ -30,6 +30,19 @@ test("login persists the token pair", async () => {
   assert.deepEqual(client.tokens, { access_token: "access", refresh_token: "refresh" });
 });
 
+test("requests bind fetch to the global runtime", async () => {
+  const client = new AuthClient({
+    apiBaseUrl: "https://api.test/api/v1",
+    storage: new MemoryStorage(),
+    fetchImpl: function fetchImpl() {
+      assert.equal(this, globalThis);
+      return jsonResponse(200, { access_token: "access", refresh_token: "refresh" });
+    },
+  });
+
+  await client.login("staff", "secret123");
+});
+
 test("registration sends the approved request body and returns the user", async () => {
   const client = new AuthClient({
     apiBaseUrl: "https://api.test/api/v1",

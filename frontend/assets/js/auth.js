@@ -108,7 +108,7 @@ export class AuthClient {
 
     let response;
     try {
-      response = await this.fetchImpl(`${this.apiBaseUrl}${path}`, {
+      response = await this.fetchImpl.call(globalThis, `${this.apiBaseUrl}${path}`, {
         method,
         headers,
         body: body === undefined ? undefined : JSON.stringify(body),
