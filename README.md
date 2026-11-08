@@ -89,7 +89,8 @@ Open `http://localhost:5500`. The default API URL is
    `JWT_SECRET_KEY` to a newly generated secret, `DEBUG=false`, and set
    `CORS_ALLOWED_ORIGINS` after Vercel provides the frontend URL.
 3. In Vercel import the same repository with **Root Directory** set to
-   `frontend`. Set `API_BASE_URL` to `https://<railway-domain>/api/v1`.
+   `frontend`. Set `API_BASE_URL` to `/api/v1`. The Vercel rewrite in
+   `frontend/vercel.json` securely proxies that same-origin path to Railway.
 4. Add the final Vercel URL to Railway's `CORS_ALLOWED_ORIGINS`, redeploy the
    API, then check `/health`, `/docs`, registration, and login.
 

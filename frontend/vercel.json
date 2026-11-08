@@ -1,4 +1,10 @@
 {
   "buildCommand": "node build.mjs",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://fullstack-warehouse-management-system-production.up.railway.app/api/:path*"
+    }
+  ]
 }
