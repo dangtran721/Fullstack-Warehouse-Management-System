@@ -60,10 +60,10 @@
 9. Frontend foundation and authentication — COMPLETED
 10. Frontend management screens — COMPLETED
 11. End-to-end testing — COMPLETED
-12. End-to-end testing, deployment and documentation
+12. Deployment preparation and documentation — PARTIALLY VERIFIED
 
 ## Current Task
-Batch 11 end-to-end testing is complete and verified. Await approval before starting Batch 12.
+Final handoff is prepared. Browser E2E remains NOT VERIFIED because Playwright is not installed and Work settings disable local browser automation. Docker Compose configuration is valid; image build reached base-image metadata resolution but did not complete in the available environment.
 
 ## Batch 8 Verification
 - Full regression: 15 tests passed.
@@ -91,6 +91,12 @@ Batch 11 end-to-end testing is complete and verified. Await approval before star
 - PostgreSQL row-lock concurrency test passed: concurrent STAFF exports preserve inventory and reject one insufficient export.
 - Full backend suite: 19 passed, 1 existing FastAPI/TestClient deprecation warning. Frontend authentication unit tests: 6 passed.
 - Browser-driven frontend E2E is not verified: no browser automation runner is configured. Frontend behavior is verified only through unit tests and API-contract coverage.
+- Browser smoke follow-up: Google Chrome is installed, but Playwright is unavailable. FastAPI started successfully against isolated `wms_browser_e2e` and `GET /health` returned HTTP 200. Local browser automation is disabled by Work settings, so no browser workflow, console check, or network capture could run. The test database was dropped and temporary servers were stopped; no browser workflow was marked as passed.
+
+## Batch 12 Verification
+- Added a minimal API Dockerfile and Docker Compose API service with a healthcheck, environment-based database URL, and no embedded secrets.
+- Docker Compose configuration validates. Docker image build began successfully but did not complete after resolving the base image metadata in the available environment.
+- README documents Docker/local setup, migrations, static frontend serving, test isolation, account policy, workflows, and verification limits.
 
 ## Batch 7 Design Decisions
 - Transfers use the same DRAFT/CONFIRMED/CANCELLED workflow and always reject source-stock shortages, including for ADMIN.
