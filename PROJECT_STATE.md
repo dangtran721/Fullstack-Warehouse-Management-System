@@ -99,6 +99,12 @@ Final handoff is prepared. Browser E2E remains NOT VERIFIED because Playwright i
 - README documents Docker/local setup, migrations, static frontend serving, test isolation, account policy, workflows, and verification limits.
 - `docs/MANUAL_BROWSER_QA.md` provides the browser smoke checklist required while Work settings block browser automation.
 
+## Final Audit
+- DONE: authentication/authorization, catalog and location CRUD, inventory workflows, alerts, PostgreSQL E2E, and PostgreSQL concurrency are backed by the committed test suite.
+- PARTIAL: Dockerfile and Compose API service are configured and Compose syntax validates. Docker image build is not verified because both BuildKit context transfer and an `rsync` copy to `/private/tmp` stalled while reading the cloud-managed workspace filesystem.
+- NOT VERIFIED: browser UI smoke, console errors, and failed-network capture. Work settings disable local browser automation; use `docs/MANUAL_BROWSER_QA.md` when browser access is available.
+- MISSING: no Requirement Specification file exists in the repository, so final requirement traceability relies on approved decisions recorded in this file and the test suite.
+
 ## Batch 7 Design Decisions
 - Transfers use the same DRAFT/CONFIRMED/CANCELLED workflow and always reject source-stock shortages, including for ADMIN.
 - `min_quantity` is nullable per inventory row. Null means no threshold is configured; a row is low stock when its quantity is less than or equal to its configured threshold.
