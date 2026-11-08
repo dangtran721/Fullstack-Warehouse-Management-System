@@ -97,6 +97,7 @@ Final handoff is prepared. Browser E2E remains NOT VERIFIED because Playwright i
 - Added a minimal API Dockerfile and Docker Compose API service with a healthcheck, environment-based database URL, and no embedded secrets.
 - Docker Compose configuration validates. Docker image build began successfully but did not complete after resolving the base image metadata in the available environment.
 - README documents Docker/local setup, migrations, static frontend serving, test isolation, account policy, workflows, and verification limits.
+- `docs/MANUAL_BROWSER_QA.md` provides the browser smoke checklist required while Work settings block browser automation.
 
 ## Batch 7 Design Decisions
 - Transfers use the same DRAFT/CONFIRMED/CANCELLED workflow and always reject source-stock shortages, including for ADMIN.
