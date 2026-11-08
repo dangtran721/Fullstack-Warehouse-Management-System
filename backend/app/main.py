@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -19,6 +20,12 @@ app.add_middleware(
     allow_headers=["Authorization", "Content-Type"],
 )
 app.include_router(api_router, prefix=settings.api_v1_prefix)
+
+
+@app.get("/", include_in_schema=False)
+def api_root() -> RedirectResponse:
+    """Send a browser visiting the API domain to its interactive documentation."""
+    return RedirectResponse(url="/docs")
 
 
 @app.get("/health", tags=["health"])
