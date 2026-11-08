@@ -59,11 +59,11 @@
 8. Backend integration tests — PARTIALLY VERIFIED
 9. Frontend foundation and authentication — COMPLETED
 10. Frontend management screens — COMPLETED
-11. Frontend integration and fixes
+11. End-to-end testing — COMPLETED
 12. End-to-end testing, deployment and documentation
 
 ## Current Task
-Batch 10 frontend management screens are complete and verified. Await approval before starting Batch 11.
+Batch 11 end-to-end testing is complete and verified. Await approval before starting Batch 12.
 
 ## Batch 8 Verification
 - Full regression: 15 tests passed.
@@ -84,6 +84,13 @@ Batch 10 frontend management screens are complete and verified. Await approval b
 - The original `.venv` contained macOS cloud-file placeholders (`dataless`) in Pydantic files. It was replaced with an isolated venv using the exact previously installed dependency versions; the original is retained temporarily outside the project at `/private/tmp/wms-venv-cloud-placeholder-backup`.
 - Import verification passes for Pydantic 2.14.3, FastAPI 0.162.0, and `app.main`.
 - Endpoint tests: 2 passed. Full backend regression: 17 passed, 1 skipped. The existing FastAPI/TestClient deprecation warning remains.
+
+## Batch 11 Verification
+- Ran migrations through revision `20261107_0009` on the isolated PostgreSQL database `wms_e2e_batch11`; the database was used only for E2E verification.
+- PostgreSQL E2E API test covers registration/login/refresh reuse protection/logout, ADMIN/STAFF authorization, catalog and warehouse access, import/export, transfer, adjustment, alerts, movements, and list filters.
+- PostgreSQL row-lock concurrency test passed: concurrent STAFF exports preserve inventory and reject one insufficient export.
+- Full backend suite: 19 passed, 1 existing FastAPI/TestClient deprecation warning. Frontend authentication unit tests: 6 passed.
+- Browser-driven frontend E2E is not verified: no browser automation runner is configured. Frontend behavior is verified only through unit tests and API-contract coverage.
 
 ## Batch 7 Design Decisions
 - Transfers use the same DRAFT/CONFIRMED/CANCELLED workflow and always reject source-stock shortages, including for ADMIN.
