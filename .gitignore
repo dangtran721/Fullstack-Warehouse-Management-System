@@ -61,6 +61,7 @@ celerybeat-schedule
 
 # JavaScript and frontend builds
 node_modules/
+frontend/dist/
 .npm/
 .pnpm-store/
 .yarn/

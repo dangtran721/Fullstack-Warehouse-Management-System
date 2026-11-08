@@ -61,6 +61,22 @@ Open `http://localhost:5500`. The default API URL is
 `http://localhost:8000/api/v1`. A deployment can set
 `window.WMS_API_BASE_URL` before loading the frontend bundle.
 
+## Railway + Vercel deployment
+
+1. Create a Railway project from this GitHub repository and add a PostgreSQL
+   service. Railway uses `railway.toml` and the root Dockerfile.
+2. In Railway set `DATABASE_URL` to its PostgreSQL connection URL,
+   `JWT_SECRET_KEY` to a newly generated secret, `DEBUG=false`, and set
+   `CORS_ALLOWED_ORIGINS` after Vercel provides the frontend URL.
+3. In Vercel import the same repository with **Root Directory** set to
+   `frontend`. Set `API_BASE_URL` to `https://<railway-domain>/api/v1`.
+4. Add the final Vercel URL to Railway's `CORS_ALLOWED_ORIGINS`, redeploy the
+   API, then check `/health`, `/docs`, registration, and login.
+
+Neither `JWT_SECRET_KEY`, database passwords, nor `API_BASE_URL` secrets are
+committed. The frontend build writes its runtime API endpoint from Vercel's
+`API_BASE_URL` environment variable.
+
 ## Local development and migrations
 
 Create a Python 3.12 virtual environment, install the project plus dev
