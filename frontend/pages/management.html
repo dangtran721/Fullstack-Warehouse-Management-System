@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Management | WMS</title>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="management" class="app-page">
+    <header class="app-header">
+      <a class="logo" href="dashboard.html">WMS</a>
+      <div class="account-menu"><span id="user-name" class="user-name">Loading account…</span><button id="logout-button" type="button" class="button-secondary">Sign out</button></div>
+    </header>
+    <main class="workspace-shell">
+      <aside class="side-nav" aria-label="Management navigation">
+        <a href="#dashboard" data-screen-link="dashboard">Overview</a>
+        <a href="#warehouses" data-screen-link="warehouses">Warehouses</a>
+        <a href="#products" data-screen-link="products">Products</a>
+        <a href="#inventory" data-screen-link="inventory">Inventory</a>
+        <a href="#imports" data-screen-link="imports">Imports</a>
+        <a href="#exports" data-screen-link="exports">Exports</a>
+        <a href="#transfers" data-screen-link="transfers">Transfers</a>
+        <a href="#adjustments" data-screen-link="adjustments" data-admin-only>Adjustments</a>
+        <a href="#alerts" data-screen-link="alerts">Low-stock alerts</a>
+      </aside>
+      <section class="workspace-content">
+        <div id="page-message" class="message" role="alert" aria-live="polite" hidden></div>
+        <div id="screen" aria-live="polite"><p class="loading">Loading workspace…</p></div>
+      </section>
+    </main>
+    <script type="module" src="../assets/js/app.js"></script>
+  </body>
+</html>

@@ -19,6 +19,25 @@ def get_transfer(session: Session, order_id: uuid.UUID):
     order=session.scalar(select(TransferOrder).options(selectinload(TransferOrder.lines)).where(TransferOrder.id==order_id))
     if not order: raise NotFoundError
     return order
+def list_transfers(session: Session, status: DocumentStatus | None, warehouse_id: uuid.UUID | None, skip: int, limit: int):
+    statement = select(TransferOrder).options(selectinload(TransferOrder.lines))
+    if status:
+        statement = statement.where(TransferOrder.status == status)
+    if warehouse_id:
+        statement = statement.where(
+            (TransferOrder.source_warehouse_id == warehouse_id)
+            | (TransferOrder.destination_warehouse_id == warehouse_id)
+        )
+    return list(session.scalars(statement.order_by(TransferOrder.created_at.desc()).offset(skip).limit(limit)))
+def list_movements(session: Session, warehouse_id: uuid.UUID | None, product_id: uuid.UUID | None, movement_type: MovementType | None, skip: int, limit: int):
+    statement = select(InventoryMovement)
+    if warehouse_id:
+        statement = statement.where(InventoryMovement.warehouse_id == warehouse_id)
+    if product_id:
+        statement = statement.where(InventoryMovement.product_id == product_id)
+    if movement_type:
+        statement = statement.where(InventoryMovement.movement_type == movement_type)
+    return list(session.scalars(statement.order_by(InventoryMovement.created_at.desc()).offset(skip).limit(limit)))
 def confirm_transfer(session: Session, order_id: uuid.UUID, user: User):
     try:
         order=session.scalar(select(TransferOrder).options(selectinload(TransferOrder.lines)).where(TransferOrder.id==order_id).with_for_update())

@@ -126,3 +126,7 @@ async function setupDashboard() {
 if (page === "login") setupLogin();
 if (page === "register") setupRegister();
 if (page === "dashboard") setupDashboard();
+if (page === "management") {
+  const { setupManagement } = await import("./management.js");
+  setupManagement();
+}

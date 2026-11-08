@@ -29,3 +29,15 @@ def test_transfer_adjustment_alert(c):
  assert c[0].post('/api/v1/adjustments',headers=c[1],json={'warehouse_id':w2,'product_id':p,'quantity_delta':'-4','reason':'count'}).status_code==409
  assert c[0].put(f'/api/v1/inventory/{w2}/{p}/threshold',headers=c[1],json={'min_quantity':'3'}).status_code==200
  assert len(c[0].get('/api/v1/alerts/low-stock',headers=c[2]).json())==1
+
+def test_transfer_and_movement_history(c):
+ w1,w2,p=ids(c); body={'source_warehouse_id':w1,'destination_warehouse_id':w2,'lines':[{'product_id':p,'quantity':'2'}]}
+ transfer=c[0].post('/api/v1/transfers',headers=c[2],json=body).json()['id']
+ assert c[0].get('/api/v1/transfers',headers=c[2]).json()[0]['id']==transfer
+ assert c[0].get('/api/v1/transfers',headers=c[2],params={'warehouse_id':w2,'status':'DRAFT'}).json()[0]['id']==transfer
+ assert c[0].post(f'/api/v1/transfers/{transfer}/confirm',headers=c[2]).status_code==200
+ adjustment=c[0].post('/api/v1/adjustments',headers=c[1],json={'warehouse_id':w2,'product_id':p,'quantity_delta':'1','reason':'count'}); assert adjustment.status_code==201
+ transfer_movements=c[0].get('/api/v1/inventory-movements',headers=c[2],params={'movement_type':'TRANSFER','product_id':p}).json()
+ adjustment_movements=c[0].get('/api/v1/inventory-movements',headers=c[2],params={'movement_type':'ADJUSTMENT','warehouse_id':w2}).json()
+ assert len(transfer_movements)==2 and {item['warehouse_id'] for item in transfer_movements}=={w1,w2}
+ assert len(adjustment_movements)==1 and adjustment_movements[0]['quantity_delta']=='1.000'

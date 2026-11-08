@@ -58,12 +58,12 @@
 7. Transfer, adjustment and alerts — COMPLETED
 8. Backend integration tests — PARTIALLY VERIFIED
 9. Frontend foundation and authentication — COMPLETED
-10. Frontend management screens
+10. Frontend management screens — COMPLETED
 11. Frontend integration and fixes
 12. End-to-end testing, deployment and documentation
 
 ## Current Task
-Batch 9 frontend foundation and authentication is complete and verified. Await approval before starting Batch 10.
+Batch 10 frontend management screens are complete and verified. Await approval before starting Batch 11.
 
 ## Batch 8 Verification
 - Full regression: 15 tests passed.
@@ -76,6 +76,14 @@ Batch 9 frontend foundation and authentication is complete and verified. Await a
 - Backend regression plus CORS preflight test: 16 passed, 1 skipped.
 - Backend coverage: 94%.
 - The frontend is static HTML/CSS/Vanilla JavaScript. It stores the JWT pair in local storage because the approved backend contract returns tokens in JSON rather than secure cookies.
+
+## Batch 10 Status
+- Added read-only `GET /api/v1/transfers` with status, warehouse, and offset-pagination filters.
+- Added read-only `GET /api/v1/inventory-movements` with warehouse, product, movement-type, and offset-pagination filters. Transfer and adjustment history are available through `movement_type`.
+- Management workspace implementation: dashboard, warehouse/product CRUD UI, inventory filters, import/export, transfer, adjustment, and low-stock alert screens.
+- The original `.venv` contained macOS cloud-file placeholders (`dataless`) in Pydantic files. It was replaced with an isolated venv using the exact previously installed dependency versions; the original is retained temporarily outside the project at `/private/tmp/wms-venv-cloud-placeholder-backup`.
+- Import verification passes for Pydantic 2.14.3, FastAPI 0.162.0, and `app.main`.
+- Endpoint tests: 2 passed. Full backend regression: 17 passed, 1 skipped. The existing FastAPI/TestClient deprecation warning remains.
 
 ## Batch 7 Design Decisions
 - Transfers use the same DRAFT/CONFIRMED/CANCELLED workflow and always reject source-stock shortages, including for ADMIN.
