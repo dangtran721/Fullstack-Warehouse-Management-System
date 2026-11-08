@@ -3,6 +3,26 @@
 Warehouse management application using FastAPI, PostgreSQL 16, and a static
 HTML/CSS/Vanilla JavaScript frontend.
 
+## Live demo
+
+| Resource | URL |
+| --- | --- |
+| Source code | https://github.com/dangtran721/Fullstack-Warehouse-Management-System |
+| Frontend | https://my-repo-flame-three.vercel.app |
+| Backend API | https://fullstack-warehouse-management-system-production.up.railway.app |
+| Swagger API docs | https://fullstack-warehouse-management-system-production.up.railway.app/docs |
+| API health check | https://fullstack-warehouse-management-system-production.up.railway.app/health |
+
+### Demo accounts
+
+| Role | Username | Email | Password | Status |
+| --- | --- | --- | --- | --- |
+| STAFF | `demo_staff` | `staff@wms-demo.com` | `Demo123456` | Active and verified |
+| ADMIN | `demo_admin` | `admin@wms-demo.com` | `Demo123456` | Pending Railway Console recovery |
+
+The credentials above are intentionally public and must be used only for this
+hosted demo. Do not reuse them for a production deployment.
+
 ## Features
 
 - JWT access/refresh authentication with rotation and ADMIN/STAFF roles.
