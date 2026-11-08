@@ -110,6 +110,15 @@ Final handoff is prepared. Browser E2E remains NOT VERIFIED because Playwright i
 - Vercel configuration uses `frontend` as its root and produces a static `dist` bundle with `API_BASE_URL` injected only at build time.
 - Frontend production build and authentication unit tests pass. Creating hosted resources and entering their secrets remains a user-account action.
 
+## Hosted Deployment (2026-11-09)
+- Frontend production URL: `https://my-repo-flame-three.vercel.app`.
+- Backend production URL: `https://fullstack-warehouse-management-system-production.up.railway.app`.
+- Vercel is configured with the `frontend` root directory, the `Other` framework preset, and `API_BASE_URL` set to the backend `/api/v1` URL.
+- Railway is configured to allow the production frontend origin through CORS. Verified preflight returns the expected `access-control-allow-origin` value.
+- The API container runs `alembic upgrade head` before starting Uvicorn. This was added after an initial production login request returned HTTP 500 because the production schema had not been migrated.
+- After the migration-startup deployment, `/health` returns HTTP 200 and a valid-format nonexistent-user login returns HTTP 401, confirming that the deployed API can access PostgreSQL.
+- Browser interaction workflows remain NOT VERIFIED in this environment; production HTML and runtime API configuration were retrieved successfully, while the local browser automation surface did not expose the page controls.
+
 ## Batch 7 Design Decisions
 - Transfers use the same DRAFT/CONFIRMED/CANCELLED workflow and always reject source-stock shortages, including for ADMIN.
 - `min_quantity` is nullable per inventory row. Null means no threshold is configured; a row is low stock when its quantity is less than or equal to its configured threshold.

@@ -73,8 +73,17 @@ Open `http://localhost:5500`. The default API URL is
 4. Add the final Vercel URL to Railway's `CORS_ALLOWED_ORIGINS`, redeploy the
    API, then check `/health`, `/docs`, registration, and login.
 
-Neither `JWT_SECRET_KEY`, database passwords, nor `API_BASE_URL` secrets are
-committed. The frontend build writes its runtime API endpoint from Vercel's
+The current hosted demo uses:
+
+- Frontend: `https://my-repo-flame-three.vercel.app`
+- API: `https://fullstack-warehouse-management-system-production.up.railway.app`
+
+The production container applies outstanding Alembic migrations before it
+starts the API, so a clean Railway PostgreSQL database receives the schema on
+its first successful deployment.
+
+Neither `JWT_SECRET_KEY` nor database passwords are committed. The frontend
+build writes its runtime API endpoint from Vercel's
 `API_BASE_URL` environment variable.
 
 ## Local development and migrations
