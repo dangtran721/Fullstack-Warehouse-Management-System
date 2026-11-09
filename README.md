@@ -3,6 +3,15 @@
 Warehouse management application using FastAPI, PostgreSQL 16, and a static
 HTML/CSS/Vanilla JavaScript frontend.
 
+## Project members
+
+| Full name | Student ID |
+| --- | --- |
+| Trần Minh Đăng | B25DTCN057 |
+| Mai Đặng Hoàng Việt | K25DTCN129 |
+| Trịnh Quang Huy | B25DTCN013 |
+| Nguyễn Trúc Vi | K25DTCN174 |
+
 ## Live demo
 
 | Resource | URL |
