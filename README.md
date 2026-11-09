@@ -8,7 +8,8 @@ HTML/CSS/Vanilla JavaScript frontend.
 | Resource | URL |
 | --- | --- |
 | Source code | https://github.com/dangtran721/Fullstack-Warehouse-Management-System |
-| Frontend | https://my-repo-flame-three.vercel.app |
+| Frontend | https://fullstack-warehouse-management-syst.vercel.app |
+| Login page | https://fullstack-warehouse-management-syst.vercel.app/pages/login.html |
 | Backend API | https://fullstack-warehouse-management-system-production.up.railway.app |
 | Swagger API docs | https://fullstack-warehouse-management-system-production.up.railway.app/docs |
 | API health check | https://fullstack-warehouse-management-system-production.up.railway.app/health |
@@ -18,7 +19,7 @@ HTML/CSS/Vanilla JavaScript frontend.
 | Role | Username | Email | Password | Status |
 | --- | --- | --- | --- | --- |
 | STAFF | `demo_staff` | `staff@wms-demo.com` | `Demo123456` | Active and verified |
-| ADMIN | `demo_admin` | `admin@wms-demo.com` | `Demo123456` | Pending Railway Console recovery |
+| ADMIN | `techstation_admin` | `admin@techstation-demo.com` | `TechStationAdmin2026!` | Active and verified |
 
 The credentials above are intentionally public and must be used only for this
 hosted demo. Do not reuse them for a production deployment.
@@ -96,7 +97,7 @@ Open `http://localhost:5500`. The default API URL is
 
 The current hosted demo uses:
 
-- Frontend: `https://my-repo-flame-three.vercel.app`
+- Frontend: `https://fullstack-warehouse-management-syst.vercel.app`
 - API: `https://fullstack-warehouse-management-system-production.up.railway.app`
 
 The production container applies outstanding Alembic migrations before it
